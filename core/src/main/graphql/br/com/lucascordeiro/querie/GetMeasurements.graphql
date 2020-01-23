@@ -1,0 +1,9 @@
+query getMeasurements{
+    measurements {
+        id
+        measurement
+        createdAt
+        measuredAt
+        status
+    }
+}

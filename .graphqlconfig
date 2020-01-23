@@ -1,0 +1,12 @@
+{
+  "name": "Appia GraphQL Schema",
+  "schemaPath": "./core/src/main/graphql/br/com/lucascordeiro/schema.json",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "http://appia-api-candidates.herokuapp.com/graphql",
+        "introspect": false
+      }
+    }
+  }
+}
