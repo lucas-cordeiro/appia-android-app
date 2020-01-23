@@ -12,4 +12,8 @@
     <color name="colorWhite">#fff</color>
     <color name="colorGray">#5D5D5D</color>
     <color name="colorGrayLight">#FAFAFA</color>
+
+    <color name="colorHipoglicemia">#C60000</color>
+    <color name="colorNormal">#039500</color>
+    <color name="colorHiperglicemia">#5120DD</color>
 </resources>

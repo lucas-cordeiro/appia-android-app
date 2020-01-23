@@ -22,10 +22,47 @@ import org.jetbrains.anko.layoutInflater
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.Socket
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class CommonsUtil {
     companion object{
+        private val formats = arrayOf(
+            "yyyy-MM-dd'T'HH:mm:ss'Z'",
+            "yyyy-MM-dd'T'HH:mm:ssZ",
+            "yyyy-MM-dd'T'HH:mm:ss",
+            "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+            "yyyy-MM-dd HH:mm:ss",
+            "MM/dd/yyyy HH:mm:ss",
+            "dd/MM/yyyy",
+            "MM/dd/yyyy'T'HH:mm:ss.SSS'Z'",
+            "MM/dd/yyyy'T'HH:mm:ss.SSSZ",
+            "MM/dd/yyyy'T'HH:mm:ss.SSS",
+            "MM/dd/yyyy'T'HH:mm:ssZ",
+            "MM/dd/yyyy'T'HH:mm:ss",
+            "yyyy:MM:dd HH:mm:ss",
+            "yyyyMMdd"
+        )
+
+        fun parseDate(d: String?) : Date? {
+            if (d != null) {
+                for (parse in formats) {
+                    val sdf = SimpleDateFormat(parse)
+                    try {
+                        return sdf.parse(d)
+                    } catch (e: ParseException) {
+
+                    }
+
+                }
+            }
+
+            return null
+        }
+
         fun isOnline(): Boolean {
             try {
                 val timeoutMs = 1500

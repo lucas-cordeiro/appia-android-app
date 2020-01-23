@@ -30,7 +30,9 @@ android {
             buildConfigField("String", "BASE_URL", "\"https://appia-api-candidates.herokuapp.com/graphql\"")
         }
     }
-
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
 }
 
 dependencies {
