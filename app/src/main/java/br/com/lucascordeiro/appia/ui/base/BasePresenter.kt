@@ -2,6 +2,7 @@ package br.com.lucascordeiro.appia.ui.base
 
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
 import java.lang.Exception
@@ -15,7 +16,7 @@ import kotlin.coroutines.CoroutineContext
 open class BasePresenter<V : MvpView>  :
     MvpPresenter<V>, CoroutineScope {
 
-    override val coroutineContext = Main
+    override val coroutineContext = Default
 
     protected val jobs = ArrayList<Job>()
 

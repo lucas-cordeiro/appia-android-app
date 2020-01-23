@@ -9,6 +9,7 @@ import br.com.lucascordeiro.appia.di.component.ApplicationComponent
 import br.com.lucascordeiro.appia.di.component.DaggerApplicationComponent
 import br.com.lucascordeiro.appia.di.module.ApplicationModule
 import com.pixplicity.easyprefs.library.Prefs
+import io.realm.Realm
 
 class BaseApp: Application() {
 
@@ -29,6 +30,7 @@ class BaseApp: Application() {
             .setUseDefaultSharedPreference(true)
             .build()
 
+        Realm.init(this)
 
         applicationComponent = DaggerApplicationComponent.builder()
             .applicationModule(ApplicationModule(this)).build()

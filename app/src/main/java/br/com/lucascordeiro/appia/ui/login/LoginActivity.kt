@@ -10,6 +10,8 @@ import br.com.lucascordeiro.appia.ui.main.MainActivity
 import br.com.lucascordeiro.core.ui.util.CommonsUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
+import android.app.Activity
+import android.view.inputmethod.InputMethodManager
 
 class LoginActivity : BaseActivity(), LoginMvpView {
 
@@ -30,6 +32,13 @@ class LoginActivity : BaseActivity(), LoginMvpView {
         }
 
         btnSend.setOnClickListener {
+            val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            var view = currentFocus
+            if (view == null) {
+                view = View(this)
+            }
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+
             val email = edtEmail.text.toString()
             val password = edtPassword.text.toString()
 
