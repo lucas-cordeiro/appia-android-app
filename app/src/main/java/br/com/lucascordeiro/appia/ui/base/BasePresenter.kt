@@ -4,6 +4,7 @@ import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
+import java.lang.Exception
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -35,6 +36,10 @@ open class BasePresenter<V : MvpView>  :
 
     protected fun log(message: String) {
         Log.d(TAG, message)
+    }
+
+    protected fun logError(e: Exception){
+        Log.d(TAG, e.message?:"Null", e)
     }
 
     protected fun doClearJobs() {

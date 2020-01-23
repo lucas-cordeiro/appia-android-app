@@ -56,20 +56,6 @@ class CommonsUtil {
             )
         }
 
-        fun isValidPassword(password: String): Boolean {
-
-            val pattern: Pattern
-            val matcher: Matcher
-
-            val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
-
-            pattern = Pattern.compile(PASSWORD_PATTERN)
-            matcher = pattern.matcher(password)
-
-            return matcher.matches()
-
-        }
-
 
         // Return true if the card number is valid
         fun isValidCreditCard(number: Long): Boolean {
@@ -164,6 +150,14 @@ class CommonsUtil {
                 r.getDisplayMetrics()
             )
             return px
+        }
+
+        fun isValidEmail(email: String) : Boolean {
+            return email.contains("@") && email.contains(".") && email.length >= 7
+        }
+
+        fun isValidPassword(password: String):Boolean {
+            return password.length >= 6
         }
 
         fun isValidCPF(_cpf: String): Boolean {

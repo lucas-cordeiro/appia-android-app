@@ -3,10 +3,13 @@
     <color name="colorPrimary">#E60D7B</color>
     <color name="colorPrimaryDark">#414141</color>
     <color name="colorAccent">#E60D7B</color>
+    <color name="colorBackgroundDefault">#E6E6F0</color>
 
     <color name="colorPinkLight">#F82D94</color>
     <color name="colorPinkDark">#D5026D</color>
 
     <color name="colorRed">#F44336</color>
     <color name="colorWhite">#fff</color>
+    <color name="colorGray">#5D5D5D</color>
+    <color name="colorGrayLight">#FAFAFA</color>
 </resources>

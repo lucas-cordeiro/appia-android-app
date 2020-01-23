@@ -48,13 +48,17 @@ class AppiaApi() {
         suspend fun doSingInAsync(email: String, password: String) = withContext(IO){
             async{
                     val singInMutation = SingInMutation(email, password)
-                    val token = getApolloClient().mutate(singInMutation).toDeferred().await().data()!!.signIn()!!.token()
+                val request = getApolloClient().mutate(singInMutation).toDeferred().await()
+                if(request.hasErrors()){
+                    return@async request.errors()
+                }
+                    val token = request.data()!!.signIn()!!.token()
                     Prefs.putString(TOKEN_ACCESS, token)
                     token
             }
         }
 
-        suspend fun doGetMeasurementsQuery() = withContext(IO) {
+        suspend fun doGetMeasurementsQueryAsync() = withContext(IO) {
             val getMeasurementsQuery = GetMeasurementsQuery.builder().build()
             val measures = getApolloClient()
                 .query(getMeasurementsQuery)
