@@ -1,5 +1,6 @@
 package br.com.lucascordeiro.appia.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import br.com.lucascordeiro.appia.R
@@ -14,6 +15,7 @@ import com.github.mikephil.charting.components.Legend.LegendForm
 import com.github.mikephil.charting.data.LineDataSet
 import android.graphics.DashPathEffect
 import androidx.core.content.ContextCompat
+import br.com.lucascordeiro.appia.ui.splash.SplashActivity
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.formatter.IFillFormatter
@@ -23,6 +25,9 @@ import com.github.mikephil.charting.utils.Utils
 import br.com.lucascordeiro.appia.ui.util.DayAxisValueFormatter
 import br.com.lucascordeiro.core.ui.util.CommonsUtil
 import com.github.mikephil.charting.components.XAxis
+import com.pixplicity.easyprefs.library.Prefs
+import io.realm.Realm
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -44,12 +49,25 @@ class MainActivity : BaseActivity(), MainMvpView {
     override fun setUp() {
         presenter.doGetMeasurements()
         showLoading()
+
+        btnLogout.setOnClickListener {
+            try{
+                Prefs.clear()
+                Realm.deleteRealm(Realm.getDefaultConfiguration())
+            }catch (e: Exception){
+
+            }finally {
+                startActivity(Intent(this@MainActivity, SplashActivity::class.java))
+                finish()
+            }
+        }
     }
 
     override fun onGetMeasurements(list: List<GetMeasurementsQuery.Measurement>) {
        runOnUiThread {
            hideLoading()
            log("get")
+           chart.visibility = View.VISIBLE
 
            val colorHipoglicemia = ContextCompat.getColor(this, R.color.colorHipoglicemia)
            val colorNormal = ContextCompat.getColor(this, R.color.colorNormal)

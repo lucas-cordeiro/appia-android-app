@@ -70,13 +70,17 @@ class LoginActivity : BaseActivity(), LoginMvpView {
     }
 
     override fun onSingIn() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+     runOnUiThread {
+         startActivity(Intent(this, MainActivity::class.java))
+         finish()
+     }
     }
 
     override fun onSingInFail(message: String?) {
-        showSnackError(message?:"Falha ao realizar login")
-        hideLoading()
+       runOnUiThread {
+           showSnackError(message?:"Falha ao realizar login")
+           hideLoading()
+       }
     }
 
     override fun onSingInNetworkError() {
